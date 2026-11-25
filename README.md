@@ -23,6 +23,13 @@ Dann <http://localhost:5173> öffnen. Der Server lauscht auch im lokalen Netz, s
 
 `dist/` ist eine rein statische Seite mit relativen Pfaden und Hash-Routen – sie läuft auf jedem Webspace, auch in einem Unterordner.
 
+### Online spielen über GitHub Pages
+
+Der Workflow `.github/workflows/pages.yml` baut und veröffentlicht die Seite bei jedem Push auf `main`.
+Einmalig nötig: unter **Settings → Pages → Build and deployment → Source** „GitHub Actions“ wählen.
+Danach ist das Spiel unter `https://<benutzername>.github.io/<repository>/` erreichbar.
+Hinweis: Für private Repositories gibt es GitHub Pages nur mit einem bezahlten GitHub-Plan – sonst das Repository öffentlich machen.
+
 ## Die Spiele
 
 | Spiel              | Idee                                                                                                     | Steuerung                                       |
