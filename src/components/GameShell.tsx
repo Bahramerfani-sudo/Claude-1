@@ -40,7 +40,7 @@ export function GameShell({ game, onRestart, restartLabel = 'Neustart', children
   return (
     <div className={`game-shell game-${game}`}>
       <header className="game-bar">
-        <a href="#/" className="back-btn">
+        <a href="#start" className="back-btn">
           <IconBack />
           <span>Übersicht</span>
         </a>

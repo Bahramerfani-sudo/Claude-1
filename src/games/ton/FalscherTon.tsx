@@ -301,7 +301,7 @@ export default function FalscherTon() {
             <button type="button" className="btn btn-orange" onClick={startGame} autoFocus>
               Nochmal spielen
             </button>
-            <a className="btn btn-ghost" href="#/" style={{ color: 'var(--ink)', borderColor: 'rgba(12,22,80,.25)' }}>
+            <a className="btn btn-ghost" href="#start" style={{ color: 'var(--ink)', borderColor: 'rgba(12,22,80,.25)' }}>
               Zur Übersicht
             </a>
           </div>

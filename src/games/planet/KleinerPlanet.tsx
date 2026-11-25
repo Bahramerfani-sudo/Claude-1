@@ -616,7 +616,7 @@ export default function KleinerPlanet() {
                   </button>
                 )}
                 {outcome.landed && isLast && (
-                  <a className="btn btn-lime" href="#/">
+                  <a className="btn btn-lime" href="#start">
                     Zur Übersicht <IconArrow />
                   </a>
                 )}

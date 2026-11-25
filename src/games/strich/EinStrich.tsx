@@ -87,7 +87,7 @@ export default function EinStrich() {
                     Weiter zu Level {idx + 2} <IconArrow />
                   </button>
                 ) : (
-                  <a className="btn btn-orange" href="#/">
+                  <a className="btn btn-orange" href="#start">
                     Zur Übersicht <IconArrow />
                   </a>
                 )}

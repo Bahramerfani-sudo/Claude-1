@@ -30,7 +30,7 @@ function GameTile({ id, art, tone, layout, number }: TileProps) {
   const g = GAMES[id]
   const progress = progressLabel(id)
   return (
-    <a href={`#${g.path}`} className={`tile tile-${tone} tile-${layout}`}>
+    <a href={`#${g.path.slice(1)}`} className={`tile tile-${tone} tile-${layout}`}>
       <div className="tile-art">{art}</div>
       <div className="tile-text">
         <span className="tile-num">Nr. {number}</span>
@@ -55,6 +55,7 @@ export default function Home() {
   useProgressTick()
   const [heroState, setHeroState] = useState<'idle' | 'drawing' | 'won' | 'lost'>('idle')
   const [heroKey, setHeroKey] = useState(0)
+  const [confirmReset, setConfirmReset] = useState(false)
   const strichProgress = progressLabel('strich')
 
   const onHero = (e: BoardEvent) => {
@@ -92,7 +93,7 @@ export default function Home() {
                 : 'Probier’s direkt hier: Zieh unter der orangen Kugel eine Linie, die sie in den grünen Becher bringt.'}
           </p>
           <div className="hero-actions">
-            <a className="btn btn-orange btn-big" href="#/ein-strich">
+            <a className="btn btn-orange btn-big" href="#ein-strich">
               Fünf Level spielen <IconArrow />
             </a>
             {strichProgress && (
@@ -120,7 +121,7 @@ export default function Home() {
             )}
             {heroState === 'won' && (
               <div className="hero-won pop-in">
-                <a className="btn btn-lime" href="#/ein-strich">
+                <a className="btn btn-lime" href="#ein-strich">
                   Weiter zu Level 1 <IconArrow />
                 </a>
                 <button type="button" className="btn btn-ghost" onClick={() => { setHeroKey((k) => k + 1); setHeroState('idle') }}>
@@ -143,15 +144,28 @@ export default function Home() {
         <p>
           <strong>Spieltrieb</strong> – gebaut mit Neugier, Canvas, SVG und ein bisschen Physik. Bestwerte werden nur in diesem Browser gespeichert.
         </p>
-        <button
-          type="button"
-          className="btn btn-ghost"
-          onClick={() => {
-            if (window.confirm('Alle Bestwerte und geschafften Level löschen?')) clearProgress()
-          }}
-        >
-          Fortschritt zurücksetzen
-        </button>
+        {confirmReset ? (
+          <div className="reset-confirm" role="group" aria-label="Fortschritt löschen?">
+            <span>Alle Bestwerte und Level löschen?</span>
+            <button
+              type="button"
+              className="btn btn-pink"
+              onClick={() => {
+                clearProgress()
+                setConfirmReset(false)
+              }}
+            >
+              Ja, löschen
+            </button>
+            <button type="button" className="btn btn-ghost" onClick={() => setConfirmReset(false)}>
+              Abbrechen
+            </button>
+          </div>
+        ) : (
+          <button type="button" className="btn btn-ghost" onClick={() => setConfirmReset(true)}>
+            Fortschritt zurücksetzen
+          </button>
+        )}
       </footer>
     </div>
   )
