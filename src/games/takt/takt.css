@@ -1,0 +1,316 @@
+.takt-rounds {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+}
+.takt-round {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 58px;
+  padding: 6px 8px;
+  border-radius: 14px;
+  border: 2px solid var(--cream-faint);
+  color: var(--cream-soft);
+  line-height: 1.1;
+}
+.takt-round-n {
+  font-weight: 800;
+  font-size: 15px;
+}
+.takt-round-t {
+  font-family: var(--mono);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.takt-round.is-current {
+  border-color: var(--cream);
+  color: var(--cream);
+  background: var(--cream-faint);
+}
+.takt-round.is-top {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--ink);
+}
+.takt-round.is-ok {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--ink);
+}
+.takt-round.is-off {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: var(--ink);
+}
+
+.takt-dial {
+  position: relative;
+  width: min(78vw, 330px, calc(100dvh - 400px));
+  min-width: 220px;
+  aspect-ratio: 1;
+  margin: 4px 0 18px;
+}
+.takt-dial svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.dial-rim {
+  fill: var(--cream);
+  stroke: var(--ink);
+  stroke-width: 6;
+}
+.dial-track {
+  fill: none;
+  stroke: rgba(12, 22, 80, 0.08);
+  stroke-width: 18;
+}
+.dial-tick {
+  stroke: var(--ink);
+  stroke-width: 2;
+  opacity: 0.5;
+}
+.dial-tick.long {
+  stroke-width: 4;
+  opacity: 0.85;
+}
+.dial-arc {
+  fill: none;
+  stroke: var(--orange);
+  stroke-width: 18;
+  stroke-linecap: round;
+}
+.dial-visible {
+  fill: none;
+  stroke: var(--lime);
+  stroke-width: 5;
+  stroke-linecap: round;
+  opacity: 0.9;
+}
+
+.dial-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  transition:
+    filter 0.5s,
+    opacity 0.5s;
+}
+.dial-digits {
+  font-family: var(--mono);
+  font-size: clamp(44px, 12vw, 64px);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.dial-label {
+  margin-top: 6px;
+  font-weight: 760;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+.dial-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dial-result .dial-label {
+  margin: 2px 0;
+}
+
+.dial-fog {
+  position: absolute;
+  inset: 9%;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: repeating-linear-gradient(-35deg, rgba(247, 238, 219, 0.97) 0 10px, rgba(225, 214, 190, 0.97) 10px 14px);
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity 0.45s,
+    transform 0.45s cubic-bezier(0.2, 1.3, 0.5, 1);
+  pointer-events: none;
+}
+.dial-fog span {
+  font-size: 96px;
+  font-weight: 800;
+  color: var(--ink);
+  opacity: 0.8;
+}
+.takt-dial.is-hidden .dial-fog {
+  opacity: 1;
+  transform: none;
+}
+.takt-dial.is-hidden .dial-center {
+  filter: blur(14px);
+  opacity: 0;
+}
+.takt-dial.is-hidden .dial-arc {
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.takt-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 140px;
+  width: 100%;
+}
+.takt-stop {
+  min-width: min(100%, 300px);
+  min-height: 84px;
+  font-size: 30px;
+}
+.takt-keyhint {
+  margin-top: -40px;
+  font-size: 14px;
+  color: var(--cream-soft);
+}
+
+.takt-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: min(100%, 460px);
+}
+.takt-dev {
+  font-size: clamp(26px, 5vw, 36px);
+  font-weight: 800;
+  font-stretch: 85%;
+  text-align: center;
+  line-height: 1.05;
+}
+
+.takt-line {
+  position: relative;
+  width: 100%;
+  height: 54px;
+}
+.takt-line-axis {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 18px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--cream-faint);
+}
+.takt-line-target,
+.takt-line-you {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.takt-line-target::before {
+  content: '';
+  width: 10px;
+  height: 40px;
+  border-radius: 4px;
+  background: var(--lime);
+}
+.takt-line-target span {
+  color: var(--lime);
+}
+.takt-line-you {
+  top: 9px;
+  transition: left 0.5s cubic-bezier(0.2, 1.3, 0.5, 1);
+}
+.takt-line-you::before {
+  content: '';
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 4px solid var(--pink);
+}
+.takt-line-you span {
+  margin-top: 6px;
+  color: var(--pink);
+}
+
+.takt-summary {
+  width: min(100%, 520px);
+  position: relative;
+}
+.takt-summary .new-best {
+  position: absolute;
+  top: -14px;
+  right: 16px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--lime);
+  border: 2px solid var(--ink);
+  font-weight: 800;
+  font-size: 14px;
+  transform: rotate(3deg);
+}
+.takt-table {
+  width: 100%;
+  margin: 16px 0 6px;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.takt-table th {
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+  padding: 4px 6px;
+}
+.takt-table td {
+  padding: 8px 6px;
+  border-top: 2px solid rgba(12, 22, 80, 0.1);
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+.takt-table td:first-child,
+.takt-table td:nth-child(2) {
+  font-family: var(--mono);
+  font-size: 14px;
+}
+.takt-table tr.is-top td:last-child {
+  color: #3d6b00;
+  font-weight: 700;
+}
+.takt-table tr.is-off td:last-child {
+  color: #c0145a;
+  font-weight: 700;
+}
+.takt-summary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+@media (max-width: 420px) {
+  .takt-round {
+    min-width: 0;
+    flex: 1;
+    padding: 5px 4px;
+  }
+  .takt-table {
+    font-size: 13px;
+  }
+}
